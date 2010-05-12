@@ -1,0 +1,275 @@
+/**
+
+    *  File         : common-id.css
+    *  Version     : 1.0
+    *  Creation Date: 24 Dec, 2009
+    *  Copyright    : 2009 Google Inc. All Rights Reserved.
+    *  Author       : User@google.com
+    *  Description  : -
+
+/* ---------------------------------------------------- */
+
+/**
+  Color Map
+    *  #fc3 Dark yellow for header
+    *  #414141 Dark Gray for footer
+
+*/
+
+div#container {
+  background-color: #fff;
+  width: 100%;
+}
+
+/*  Header  */
+
+div#header {
+  background-color:#fff;
+  height:90px;
+  width:100%;
+}
+
+div#logo {
+  float: left;
+  font-family: Arial, sans-serif, Courier;
+  margin-left: 10px;
+  width: auto;
+}
+
+div#logo-img {
+  float: left;
+  margin-left: 0px;
+  width: 15%;
+}
+
+div#search-form {
+  float: right;
+  text-align: right;
+  width: 38%;
+  margin: 10px 10px 0 0;
+}
+
+/*  Body  */
+
+div#wrapper {
+  background-color: #fff;
+  clear: both;
+  float: left;
+  margin-right: 0;
+  margin-top: 0;
+  width: 100%;
+}
+
+div#bottom-wrapper {
+  background-color: #333;
+  clear: both;
+  float: left;
+  margin-right: 0;
+  margin-top: 0;
+  width: 100%;
+}
+div#content {
+  background-color: #fff;
+  float: left;
+  font-size: 83%;
+  width: 58%;
+  margin: 0 0 0 2%;
+}
+
+/*  Home - Submit Idea Form */
+
+div#submit-idea-sec {
+  background-color: #fff;
+  float: right;
+  margin: 0;
+  width: 35%;
+}
+
+div#submit-idea-form {
+  background-color: #F2f2f2;
+  text-align: left;
+  width: 95%;
+}
+
+div#terms-cond {
+  color: #3c7ab9;
+  font-family: Trebuchet MS;
+  font-size: 0.82em;
+  margin: 10px 10px 0 0;
+  text-align: right;
+}
+
+/*  Top menu & Sub menu  */
+
+div#sub-menu {
+  background-color: #fff;
+  clear: both;
+  color: #4b483e;
+  padding-top: 5px;
+
+}
+
+div#tab-menu {
+  background-color: #fff;
+  background-image:url(../images/tab-bg.gif);
+  background-repeat: repeat-x;
+  clear: both;
+  color: #4b483e;
+  height: 28px;
+  padding-top: 15px;
+  width: 100%;
+
+}
+
+div#top-menu {
+  background-color: #fff;
+  font-size: 80%;
+  height: 25px;
+}
+
+/*  footer  */
+
+div#footer {
+  background-color: #414141;
+  color: #a0a0a0;
+  clear: both;
+  font-family: verdana;
+  font-size: 0.73em;
+  vertical-align: middle;
+  padding: 13px 0 13px 15px;
+}
+
+/*  Submit idea page  */
+
+div#submit-idea-pg {
+  float: left;
+  width: 100%;
+}
+
+div#submit-idea-pg-content {
+  clear: both;
+  margin: 1% 0 0 2%;
+  width: 98%;
+}
+
+div#internal-pg-content {
+  clear: both;
+  margin: 1% 0 0 2%;
+  width: 98%;
+
+}
+
+div#internal-pg-col-1 {
+  border-right: 1px solid #d7d7d7;
+  float: left;
+  margin: 1% 0 0 1%;
+  text-align: left;
+  width: 72%;
+}
+
+div#internal-pg-col-2 {
+  float: right;
+  margin: 1% 0 0 2%;
+  width: 25%;
+}
+
+/* Tag cloud */
+
+div#tag-cloud-sec {
+  background-color: #fff;
+  float: right;
+  margin: 1% 0 0 0;
+  font-size: 80%;
+  text-align: left;
+  width: 24.8%;
+}
+
+
+
+
+/*  botttom home page navigation columns  */
+
+div#bottom-links {
+  background-color:#333;
+  clear: both;
+  font-family: verdana;
+  font-size: 0.89em;
+/*   height: 180px; */
+  width: 100%;
+}
+
+div#bt-colA {
+  float: left;
+  width: 33%;
+}
+
+div#bt-colB {
+  float: left;
+  width: 33%;
+}
+
+.bt-colB-int {
+  border-right: 1px solid #464646; 
+  border-left: 1px solid #464646;
+}
+
+div#bt-colC {
+  float: right;
+  width: 33.8%;
+  text-align: left;
+}
+
+div#pagination {
+  background-color: #fff;
+  height: 20px;
+  margin: 1% 1% 1% .2%;
+  
+}
+
+div#narrow-search-sec {
+  background-color: #fff;
+  float: right;
+  margin: 1% 0 0 0;
+  font-size: 80%;
+  text-align: left;
+  width: 24.8%;
+}
+
+div#ie-adm-tab-menu {
+  background-color: #fff;
+  background-image:url(../gifs/tab-bg.gif);
+  background-repeat: repeat-x;
+  clear: both;
+  color: #4b483e;
+  height: 28px;
+  padding-top: 15px;
+  width: 100%;
+
+}
+/* ---------------------------------------------------- */
+
+div#re-captcha {
+	width: 440px;
+}
+#sort-dropdown {
+    background-color: #fff;
+    position:absolute;
+    z-index:99;
+    border:1px solid #47a;
+    display:none;
+    list-style-type:none;
+}
+#filter-dropdown li, #sort-dropdown li {
+       font-size:83%;
+       font-weight:default;
+       margin-left:-40px;
+    padding:2px 12px;
+    white-space:nowrap;
+}
+
+#sort-dropdown li.selected, a.selected {
+   	font-size:83%;
+    font-weight:bold;
+    cursor:default;
+    text-decoration:none;
+}    

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+  <!-- Configures the @Controller programming model -->
+  <mvc:annotation-driven />
+
+  <!-- Configures Handler Interceptors -->  
+  <mvc:interceptors>
+    <mvc:interceptor>
+        <mvc:mapping path="/ideas/save*"/>
+        <mvc:mapping path="/ideas/publish"/>
+        <mvc:mapping path="/ideas/voteIdea/**"/>
+        <mvc:mapping path="/ideas/edit/**"/>
+        <mvc:mapping path="/ideas/duplicate/**"/>
+        <mvc:mapping path="/ideas/flag/**"/>
+        <mvc:mapping path="/ideas/addsummary/*"/>
+        <mvc:mapping path="/users/ideas"/>
+        <mvc:mapping path="/users/ideas/**"/>
+        <mvc:mapping path="/users/profile"/>
+        <mvc:mapping path="/users/profile/*"/>
+        <mvc:mapping path="/tags/my*"/>
+        <mvc:mapping path="/comments/vote/**"/>
+        <mvc:mapping path="/comments/post*"/>
+        <mvc:mapping path="/comments/flag/**"/>
+        <mvc:mapping path="/projectComments/postProjectComments*"/>
+		<mvc:mapping path="/projectComments/flag/**"/>
+        <mvc:mapping path="/projects/create*"/>
+        <mvc:mapping path="/projects/editProject/**"/>
+        <mvc:mapping path="/projects/joinProject**"/>
+        <mvc:mapping path="/admin/approve/*"/>
+        <mvc:mapping path="/admin/deny/*"/>
+        <mvc:mapping path="/admin/delete/*"/>
+        <mvc:mapping path="/admin/banUser/**"/>
+        <mvc:mapping path="/admin/activateUser/**"/>
+        <bean id="loginInterceptor" class="com.google.ie.web.interceptor.LoginInterceptor">
+          <property name="fcauthCookieName" value="${fcauthCookieName}"/>
+        </bean>
+      </mvc:interceptor>
+  </mvc:interceptors>
+
+  <!-- View resolver for Json -->
+  <bean id="jsonViewResolver"
+    class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver"
+    p:order="0">
+    <property name="mediaTypes">
+      <map>
+        <entry key="json" value="application/json" />
+      </map>
+    </property>
+    <property name="defaultViews">
+      <list>
+        <bean
+          class="com.google.ie.web.view.GsonView">
+      </bean>
+      </list>
+    </property>
+  </bean>
+
+  <!-- View resolver for  -->
+  <bean id="jstlViewResolver"
+    class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+    p:viewClass="org.springframework.web.servlet.view.JstlView"
+    p:prefix="/WEB-INF/jsp/" p:suffix=".jsp">
+  </bean>
+  
+</beans>
