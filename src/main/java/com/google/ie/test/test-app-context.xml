@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:oxm="http://www.springframework.org/schema/oxm" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-2.5.xsd
+						http://www.springframework.org/schema/oxm 
+						http://www.springframework.org/schema/oxm/spring-oxm-3.0.xsd
+					    http://www.springframework.org/schema/tx 
+					    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+     					http://www.springframework.org/schema/aop 
+     					http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+  <!-- Scans for controllers -->
+  <context:component-scan base-package="com.google.ie" />
+
+  <bean id="appConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <!--reads application.properties file-->    
+    <property name="location" value="classpath:application.properties"/>    
+   </bean> 
+  
+  <!--   Services -->
+
+  <bean id="tagService" class="com.google.ie.business.service.impl.TagServiceImpl">
+    <property name="tagDao" ref="tagDao" />
+  </bean>
+
+  <bean id="commentService" class="com.google.ie.business.service.impl.IdeaCommentServiceImpl">
+    <property name="commentDao" ref="commentDao" />
+  </bean>
+  <bean id="projectService" class="com.google.ie.business.service.impl.ProjectServiceImpl">
+    <property name="projectDao" ref="projectDao" />
+  </bean>
+  <bean id="entityIndexService" class="com.google.ie.business.service.impl.EntityIndexServiceImpl">
+    <property name="entityIndexDao" ref="entityIndexDao" />
+  </bean>
+  
+  <bean id="userService" class="com.google.ie.business.service.impl.UserServiceImpl">
+  </bean>
+  
+  <!--Initialize JDO pmf using config name given in jdoconfig.xml -->
+  <bean id="persistenceManagerFactory"
+    class="org.springframework.orm.jdo.LocalPersistenceManagerFactoryBean">
+    <property name="persistenceManagerFactoryName" value="transactions-optional" />
+  </bean>
+
+  <!-- Transaction manager for a JDO -->
+  <bean id="transactionManager" class="org.springframework.orm.jdo.JdoTransactionManager"
+    p:persistenceManagerFactory-ref="persistenceManagerFactory" />  
+
+  <!-- Data access objects -->
+  <bean id="ideaDao" class="com.google.ie.business.dao.impl.IdeaDaoImpl">
+    <property name="persistenceManagerFactory" ref="persistenceManagerFactory" />
+  </bean>
+
+  <bean id="ideaCategoryDao" class="com.google.ie.business.dao.impl.IdeaCategoryDaoImpl">
+    <property name="persistenceManagerFactory" ref="persistenceManagerFactory" />
+  </bean>
+
+  <bean id="tagDao" class="com.google.ie.business.dao.impl.TagDaoImpl">
+    <property name="persistenceManagerFactory" ref="persistenceManagerFactory" />
+  </bean>
+
+  <bean id="commentDao" class="com.google.ie.business.dao.impl.CommentDaoImpl">
+    <property name="persistenceManagerFactory" ref="persistenceManagerFactory" />
+  </bean>
+  
+  <bean id="auditDao" class="com.google.ie.business.dao.impl.AuditDaoImpl">
+  	<property name="persistenceManagerFactory" ref="persistenceManagerFactory" />
+  </bean>
+  
+  <bean id="entityIndexDao" class="com.google.ie.business.dao.impl.EntityIndexDaoImpl">
+  	<property name="persistenceManagerFactory" ref="persistenceManagerFactory" />
+  </bean>
+  
+  <bean id="userDao" class="com.google.ie.business.dao.impl.UserDaoImpl">
+  	<property name="persistenceManagerFactory" ref="persistenceManagerFactory" />
+  </bean>
+  
+  <bean id="ideaVoteDao" class="com.google.ie.business.dao.impl.VoteDaoImpl">
+  	<property name="persistenceManagerFactory" ref="persistenceManagerFactory" />
+  </bean>
+  
+  <bean id="projectDao" class="com.google.ie.business.dao.impl.ProjectDaoImpl">
+  	<property name="persistenceManagerFactory" ref="persistenceManagerFactory" />
+  </bean>
+  
+ <bean id="shardedCounterDao" class="com.google.ie.business.dao.impl.ShardedCounterDaoImpl">
+  	<property name="persistenceManagerFactory" ref="persistenceManagerFactory" />
+  </bean>
+  
+  <bean id="badWordDao" class="com.google.ie.business.dao.impl.BadWordDaoImpl">
+  	<property name="persistenceManagerFactory" ref="persistenceManagerFactory" />
+  </bean>
+  <bean id="developerDao" class="com.google.ie.business.dao.impl.DeveloperDaoImpl">
+  	<property name="persistenceManagerFactory" ref="persistenceManagerFactory" />
+  </bean>
+  <bean id="adminRequestDao" class="com.google.ie.business.dao.impl.AdminRequestDaoImpl">
+    <property name="persistenceManagerFactory" ref="persistenceManagerFactory" />
+  </bean>
+
+  <!-- use annotation based transaction configuration -->
+  <tx:annotation-driven/>
+  
+  
+  
+ 	<!--
+		- This bean resolves specific types of exceptions to corresponding logical 
+		- view names for error views. The default behavior of DispatcherServlet 
+		- is to propagate all exceptions to the servlet container: this will happen 
+		- here with all other types of exceptions.
+	-->
+  
+  <bean id="exceptionResolver"
+	class="com.google.ie.common.exception.IdeaExchangeExceptionResolver">
+	<property name="exceptionMappings">
+		<props>  
+                <prop key="org.springframework.dao.DataAccessException">error/system-error</prop>
+				<prop key="org.springframework.transaction.TransactionException">error/system-error</prop>
+ 
+            </props>  
+	</property>
+	<property name="defaultErrorView" value="error/system-error" />
+</bean>
+<bean id="messageSource"
+	class="org.springframework.context.support.ResourceBundleMessageSource">
+	<property name="basenames">
+		<list>
+			<value>email</value>
+			<value>message</value>
+		</list>
+	</property>
+</bean>
+</beans>
+
