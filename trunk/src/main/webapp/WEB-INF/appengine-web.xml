@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
+	<application>staging-iip</application>
+	<version>1</version>
+	<sessions-enabled>true</sessions-enabled>
+	<precompilation-enabled>true</precompilation-enabled>
+    <static-files>
+        <include path="/public/**" />
+        <include path="/public/**.js" expiration="1d"/>
+    </static-files>
+  	<!-- Configure java.util.logging -->
+	<system-properties>
+		<property name="java.util.logging.config.file" value="WEB-INF/classes/logging.properties"/>
+	</system-properties>
+</appengine-web-app>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queue-entries>
+<!-- Customized TaskQueue for auditing user actions -->
+	<queue>
+		<name>audit-queue</name>
+		<rate>6/s</rate>
+		<bucket-size>6</bucket-size>
+	</queue>
+	<!--Start of Customized TaskQueue for check objectionable content -->
+	<queue>
+		<name>objectionable-queue</name>
+		<rate>2/s</rate>
+		<bucket-size>2</bucket-size>
+	</queue>
+	<!--TaskQueue for weight calculation of tags -->
+	<queue>
+		<name>tags-weight-updation-queue</name>
+		<rate>1/s</rate>
+		<bucket-size>1</bucket-size>
+	</queue>
+	<queue>
+		<name>objectionable-worker-queue</name>
+		<rate>5/s</rate>
+		<bucket-size>5</bucket-size>
+	</queue>
+		<queue>
+		<name>mail-queue</name>
+		<rate>2/s</rate>
+		<bucket-size>2</bucket-size>
+	</queue>
+    <queue>
+       <name>index-queue</name>
+       <rate>3/s</rate>
+       <bucket-size>3</bucket-size>
+   </queue>
+	<!-- End of Customized TaskQueue for check objectionable content -->
+</queue-entries>
+
