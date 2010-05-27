@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<cronentries>
-<cron>
-    <url>/indexer/index</url>
-    <description>Index unidexed ideas every 2 minute</description>
-    <schedule>every 2 minutes</schedule>
-  </cron>    
-</cronentries>
