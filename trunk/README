@@ -1,0 +1,85 @@
+1. Introduction
+ThoughtSite is envisioned as a social network where potential developers/entrepreneurs can find inspiration to build new applications and businesses. The website is a medium for people to propose and exchange new and interesting business ideas as well as a social network for registered users to search, comment and collaborate on ideas.
+
+2. Installation
+Please follow the instructions below to install ThoughtSite. 
+
+2.1  Pre-requisites:
+
+     1) Install JRE 1.6.0_02
+     2) Checkout the latest version of the code from the repository into your favorite IDE, as described on
+         http://code.google.com/p/thoughtsite/source/checkout
+     3) Update application name inside ${Project_home}/src/main/webapp/WEB-INF/appengine-web.xml.
+	
+	For Example: 
+	  <?xml version="1.0" encoding="utf-8"?>
+	  <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
+		<application>
+			<<Application Id>>
+		</application>
+			.
+			.
+			.
+	  </appengine-web-app>
+
+2.2   Configuration changes:
+      Following are the web-domain specific changes, needed for enabling the OpenId and Google OAuth for web domains.	
+     1) Use link https://www.google.com/accounts/ManageDomains to register your web domain and generate <meta>  tag having verification key as its content.       
+	  For Example:
+	  <meta name="google-site-verification" content="xzcVSmAgkQvOm_ImutHAxNTGCKkrVVFNUsiDf3hISFQ" />
+      	  
+     2) Copy <meta> tag and paste into ${Project_home}/war/WEB-INF/decorators/admin-layout.jsp and   
+          ${Project_home}/war/WEB-INF/decorators/layout.jsp , and upload ThoughtSite project to GAE using 
+	  GAE plug-in from eclipse.
+	  Example:
+	  <html>
+	      <head>
+	          <meta name="google-site-verification" content="Ef3KCtSi-DqVSVq-Z3bf_ZaLrLuSw6cWrdbNwAcAGCo" /> 
+		  .
+		  .
+		  .
+              </head>
+	      <body>
+		.
+		.
+		.
+	      </body>
+          </html> 
+     3) Generate certificate file for authorization. Please refer 
+         http://code.google.com/apis/gdata/docs/auth/oauth.html#GeneratingKeyCert for certificate generation.
+	 	 
+     4) Verify your site from https://www.google.com/accounts/ManageDomains using web domain specific link 
+         under 'Manage registration' section. On successful verification pass certificate generated in step 3.
+	 On successful verification, server would return following security information for web-domain.
+	 1.)google.consumerKey
+	 2.)google.consumerSecret
+	 3.)google.oauthTestEndpoint	 
+     5) Add google.consumerKey, google.consumerSecret and google.oauthTestEndpoint as properties and their values received in step 4 into ${Project_home}/conf/dev/provider.properties for openId and OAuth based authentification and authorization.
+           a) google.consumerKey
+	   b) google.consumerSecret
+	   c) google.oauthTestEndpoint
+        Please refer the link http://code.google.com/apis/gdata/docs/auth/oauth.html#2LeggedOAuth.
+
+2.3 Upload Application and Populate data:
+    1.) Upload the ThoughtSite application.
+
+    2.) Upload Data:
+	ThoughtSite contains DataUploadController, a seperate controller to upload the sample data eg
+	Categories,Bad Words and appliaction admin.
+
+	a) Upload Categories
+	   Use URL http://<<domain-name>>.com/categories/upload to load categories.
+
+	a) Upload Bad words
+	   Use URL http://<<domain-name>>.com/upload/badWords to load Bad words.
+
+	c) Add Admin:
+	   Use URL http://<<domain-name>>.com/addAdmin to load admin.
+
+       	  
+	  
+
+
+
+
+
